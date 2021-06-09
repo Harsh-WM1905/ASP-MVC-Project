@@ -1,0 +1,49 @@
+﻿@model Bookstore.Models.OrdersModel
+
+@{
+    ViewData["Title"] = "ReturnBook";
+}
+
+<h1>Zwróć książkę</h1>
+
+<div class="con">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tytuł
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.TitleBook
+        </dd>
+        <dt class="col-sm-2">
+            Autor
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Autor
+        </dd>
+        <dt class="col-sm-2">
+            Rok produkcji
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Year
+        </dd>
+        <dt class="col-sm-2">
+            Kategoria
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Category
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="ReturnBookFinal" asp-route-id="@Model.Id">
+    <i class="bi-file-earmark-minus">  </i>Zwróć książkę</a>
+    <a class="btn btn-primary" asp-action="Index">
+    <i class="bi-arrow-left-square">  </i>Wracaj do listy wypożyczeń</a>
+</div>

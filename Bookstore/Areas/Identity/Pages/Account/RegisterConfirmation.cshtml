@@ -1,0 +1,17 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+<p>
+    Ask administrator to accept your account. For now you must wait until Admin will not confirm your account
+    <br />
+    <button class="btn btn-outline-primary" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");">Wróć do strony głównej</button>
+</p>
+    }
+}

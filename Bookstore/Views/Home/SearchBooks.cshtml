@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Bookstore.Models.BookModel>
+
+@{
+    ViewData["Title"] = "SearchBooks";
+}
+
+<div class="container">
+    <h2>Wyszukaj książkę</h2>
+
+
+    <form asp-action="SearchBooks" method="get">
+        <div class="form-actions no-color">
+            <div class="form-group row">
+                <div class="form-group col">
+                    <h6>Szukaj po tytule:</h6>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"> </i>
+                            </span>
+                        </div> 
+                        <input class="form-control" placeholder="Tytuł" type="text" name="SearchTitle" value="@ViewData["FilterTitle"]" />
+                    </div>
+                    
+                </div>
+                <div class="form-group col">
+                    <h6>Szukaj po autorze:</h6>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"> </i>
+                            </span>
+                        </div>
+                        <input class="form-control" placeholder="Autor" type="text" name="SearchAutor" value="@ViewData["FilterAutor"]" />
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <h6>Szukaj po kategorii:</h6>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"> </i>
+                            </span>
+                        </div>
+                        <input class="form-control" placeholder="Kategoria" type="text" name="SearchCategory" value="@ViewData["FilterCategory"]" />
+                    </div>  
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="submit" class="btn btn-primary" value="Szukaj" style="margin-right:10px; margin-left: 10px" />
+                <a class="btn btn-primary" asp-action="SearchBooks">
+                <i class="bi-arrow-left-square">  </i>Wróć do pełnej listy książek</a>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="SearchBooks" asp-route-sortOrder="@ViewData["TitleSort"]">Tytuł</a>
+                </th>
+                <th>
+                    <a asp-action="SearchBooks" asp-route-sortOrder="@ViewData["AutorSort"]">Autor</a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Autor)
+                    </td>
+                    <td>
+                        <a class="btn btn-success mr-2" asp-action="Details" asp-route-id="@item.Id">
+                        <i class="bi-file-check">  </i>Detale</a> 
+                        <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@item.Id">
+                        <i class="bi-cart-plus">  </i>Dodaj do koszyka</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

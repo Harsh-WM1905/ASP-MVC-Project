@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Gratulations";
+}
+
+<div class="container" style="text-align:center; position:center">
+    <h2 style="text-align:center">Gratulacje</h2>
+    <h4>Twoje zamówienie zostało złożone!</h4>
+    <button class="btn btn-primary" style="position:center"
+            onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");">
+        Back to Bookstore
+    </button>
+
+</div>
+

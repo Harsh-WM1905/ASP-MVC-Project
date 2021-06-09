@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Bookstore.Models.BookModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="container">
+    <h1 class="display-4">Panel administracyjny</h1>
+    <a class="card-link" asp-action="UserList">
+        <div class="card" style=" background-color:lavender; border-radius:8px">
+            <h5 class="card-header">
+                <i class="bi-person-badge">  </i>Lista użytkowników</h5>
+        </div>
+    </a>
+    <a class="card-link" asp-action="RoleList">
+        <div class="card" style=" background-color:lavender; border-radius:8px">
+            <h5 class="card-header">
+            <i class="bi-credit-card">  </i>Lista ról</h5>
+        </div>
+    </a>
+    <a class="card-link" asp-action="CategoryList">
+        <div class="card" style=" background-color:lavender; border-radius:8px">
+            <h5 class="card-header">
+                <i class="bi-card-list">  </i>Lista kategorii książek</h5>
+        </div>
+    </a>
+    <a class="card-link" asp-action="Create">
+        <div class="card" style=" background-color:lavender; border-radius:8px">
+            <h5 class="card-header">
+                <i class="bi-bookmark-plus">  </i>Dodaj nową książkę</h5>
+        </div>
+    </a>
+    <a class="card-link" asp-action="BookList">
+        <div class="card" style=" background-color:lavender; border-radius:8px">
+            <h5 class="card-header">
+                <i class="bi-list-ul">  </i>Lista książek</h5>
+        </div>
+    </a>
+    <a class="card-link" asp-action="OrdersList">
+        <div class="card" style=" background-color:lavender; border-radius:8px">
+            <h5 class="card-header">
+                <i class="bi-list-check">  </i>Zamówienia</h5>
+        </div>
+    </a>
+</div>
+
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Bookstore.Models.CategoryModel>
+
+@{
+    ViewData["Title"] = "CategoryList";
+}
+
+<div class="container">
+    <h1>Lista kategorii</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary mr-4" asp-action="CategoryEdit" asp-route-id="@item.Id">
+                        <i class="bi bi-pencil-square">  </i>Edytuj</a>
+                        <a class="btn btn-danger" asp-action="DeleteCategory" asp-route-id="@item.Id">
+                        <i class="bi bi-trash">  </i>Usuń</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        <a class="btn btn-primary" asp-action="CreateCategory">
+            <i class="bi bi-plus-circle">  </i>
+            Dodaj nową kategorię
+        </a>
+    </p>
+</div>
+
+

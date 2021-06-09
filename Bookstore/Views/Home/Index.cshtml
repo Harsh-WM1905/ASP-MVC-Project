@@ -1,0 +1,60 @@
+﻿@model List<Bookstore.Models.BookModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Witam w księgarni Wesoła Książka!</h1>
+    <tr>
+        <td>
+            <a class="btn btn-primary" style="margin:10px" asp-action="SearchBooks">Przejdź do księgarni  
+            <i class="bi-arrow-right-square"></i></a>
+        </td>
+    </tr>
+    <h4>Ostatnio dodane pozycje</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Autor
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Year_of_publish
+                </th>
+                <th>
+                    Publisher
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.Autor
+                    </td>
+                    <td>
+                        @item.Category
+                    </td>
+                    <td>
+                        @item.Year_of_publish
+                    </td>
+                    <td>
+                        @item.Publisher
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

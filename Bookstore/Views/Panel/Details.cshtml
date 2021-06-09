@@ -1,0 +1,78 @@
+﻿@model Bookstore.Models.BookModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container text-center justify-content-md-center">
+    <h1>Detale</h1>
+
+    <div>
+        <hr />
+        <dl class="row text-center justify-content-md-center">
+            <dd class="col-md-4"></dd>
+            <dt class="col-md-2">
+                Tytuł
+            </dt>
+            <dd class="col-md-2">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dd class="col-md-4"></dd>
+            <dd class="col-md-4"></dd>
+            <dt class="col-md-2">
+                Autor
+            </dt>
+            <dd class="col-md-2">
+                @Html.DisplayFor(model => model.Autor)
+            </dd>
+            <dd class="col-md-4"></dd>
+            <dd class="col-md-4"></dd>
+            <dt class="col-md-2">
+                Ilość
+            </dt>
+            <dd class="col-md-2">
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
+            <dd class="col-md-4"></dd>
+            <dd class="col-md-4"></dd>
+            <dt class="col-md-2">
+                Kategoria
+            </dt>
+            <dd class="col-md-2">
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+            <dd class="col-md-4"></dd>
+            <dd class="col-md-4"></dd>
+            <dt class="col-md-2">
+                Rok publikacji
+            </dt>
+            <dd class="col-md-2">
+                @Html.DisplayFor(model => model.Year_of_publish)
+            </dd>
+            <dd class="col-md-4"></dd>
+            <dd class="col-md-4"></dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.ISBN)
+            </dt>
+            <dd class="col-md-2">
+                @Html.DisplayFor(model => model.ISBN)
+            </dd>
+            <dd class="col-md-4"></dd>
+            <dd class="col-md-4"></dd>
+            <dt class="col-md-2">
+                Wydawca
+            </dt>
+            <dd class="col-md-2">
+                @Html.DisplayFor(model => model.Publisher)
+            </dd>
+            <dd class="col-md-4"></dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary mr-2" asp-action="Edit" asp-route-id="@Model.Id">
+        <i class="bi bi-pencil-square">  </i>Edytuj</a>
+        <a class="btn btn-primary" asp-action="Index">
+        <i class="bi bi-arrow-left-square">  </i>Wróć do panelu administratora</a>
+    </div>
+</div>

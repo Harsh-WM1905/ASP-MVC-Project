@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Bookstore.Models.BookModel>
+
+@{
+    ViewData["Title"] = "BookList";
+}
+
+<div class="container text-center justify-content-sm-end">
+    <h1>Lista książek</h1>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>
+                    Tytuł
+                </th>
+                <th>
+                    Autor
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Autor)
+                    </td>
+                    <td>
+                        <a class="btn btn-success mr-2" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="bi bi-pencil-square">  </i>Edytuj</a> 
+                        <a class="btn btn-success mr-2" asp-action="Details" asp-route-id="@item.Id">
+                        <i class="bi bi-file-check">  </i>Detale</a> 
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="bi bi-trash">  </i>Usuń</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

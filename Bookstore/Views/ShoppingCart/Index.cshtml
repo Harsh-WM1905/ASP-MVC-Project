@@ -1,0 +1,67 @@
+﻿@using Bookstore.ViewModels
+@model ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "ShooppingCart";
+}
+<div class="container">
+    <div class="row checkoutForm">
+        <h2>Your shopping cart</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th class="text-center">Book</th>
+                    <th class="text-center">Autor</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Year of publication</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+                {
+                    @if (line.Book.Amount == 0)
+                    {
+                        <tr style="background-color:azure">
+                            <td class="text-center">@line.Book.Title</td>
+                            <td class="text-center">@line.Book.Autor</td>
+                            <td class="text-center">@line.Book.Category</td>
+                            <td class="text-center">@line.Book.Year_of_publish</td>
+                            <td><a class="btn btn-danger" asp-controller="ShoppingCart" 
+                                   asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.Id">
+                                    <i class="bi-cart-dash">  </i>Remove from cart</a></td>
+                            <td>Brak na stanie!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr style="background-color:azure">
+                            <td class="text-center">@line.Book.Title</td>
+                            <td class="text-center">@line.Book.Autor</td>
+                            <td class="text-center">@line.Book.Category</td>
+                            <td class="text-center">@line.Book.Year_of_publish</td>
+                            <td><a class="btn btn-danger" asp-controller="ShoppingCart" 
+                                   asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.Id">
+                                <i class="bi-cart-dash">  </i>Remove from cart</a></td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <button class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("SearchBooks", "Home") + "'");">
+            <i class="bi-arrow-left-square">  </i>Back to list</button>
+            <div class="btn-group ">
+                <a class="btn btn-success" asp-controller="ShoppingCart" asp-action="CheckOut">
+                <i class="bi-cart-check">  </i>Check out</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
