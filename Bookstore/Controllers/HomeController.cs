@@ -28,6 +28,7 @@ namespace Bookstore.Controllers
         {
             List<BookModel> books = dbContext.Books.ToList();
             List<BookModel> rightBooks = new List<BookModel>();
+
             for (int i = books.Count - 1; i > 0; i--)
             {
                 rightBooks.Add(books[i]);
@@ -36,6 +37,10 @@ namespace Bookstore.Controllers
                     break;
                 }
             }
+            ViewData["item1"] = rightBooks.ElementAt(0); 
+            ViewData["item2"] = rightBooks.ElementAt(1); 
+            ViewData["item3"] = rightBooks.ElementAt(2); 
+            ViewData["item4"] = rightBooks.ElementAt(3); 
             return View(rightBooks);
         }
 

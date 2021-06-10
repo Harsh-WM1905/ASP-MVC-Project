@@ -4,14 +4,16 @@ using Bookstore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bookstore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210610084336_miragtion")]
+    partial class miragtion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -443,15 +445,15 @@ namespace Bookstore.Data.Migrations
                         {
                             Id = "69kjc8ab-d412-4a76-bb7d-e971d2d48c46",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a2090de0-3c4f-4702-92fd-4f7798a0e992",
+                            ConcurrencyStamp = "b59ad861-b614-42ad-b4a0-2c1fa2f28966",
                             Email = "administrator@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRATOR@EMAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMhAf36x+ZUOQpjbMJmeHGFZR2bchXBGMDqxdMf9M4miL6ZN2DzX+ivAk/NU0mlP7w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEARq2AlRlq6j3vHaq4cd4T3wcKr0NMnukim4YxbkMiSip9zSfKLEpVuZKVd5xxda7A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cf3dedaa-2d92-4108-a170-9f91e2e346db",
+                            SecurityStamp = "9162a2fa-16b7-4dd6-b7ff-44fd21d5fc87",
                             TwoFactorEnabled = false,
                             UserName = "administrator@email.com"
                         });
