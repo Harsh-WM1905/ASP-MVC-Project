@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Images\mbr-1920x1080.jpg" />
+    <None Include="wwwroot\Images\cool-background.png" />
+    <None Include="wwwroot\Images\mbr-1920x1080.jpg" />
+    <None Include="wwwroot\Images\sea-edge-79ab30e2.png" />
   </ItemGroup>
 
   <ItemGroup>

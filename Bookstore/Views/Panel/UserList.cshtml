@@ -4,206 +4,221 @@
 }
 
 <div class="container">
-    <h2>Dostępni użytkownicy</h2>
+    <h4>Dostępni użytkownicy</h4>
 
     @if (Model.Any())
     {
-        <h5 class="popover-header" style="background-color: gray">Admini</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nazwa użytkownika</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model)
-                {
-                    @foreach (var userRole in ViewBag.AdminRole)
-                    {
-                        @if (user.Id.Equals(userRole))
-                        {
-                            <tr>
-                                <td>
-                                    @user.UserName
-                                </td>
-                                <td>
-                                    @user.Email
-                                </td>
-                                <td>
-                                    @if (ViewBag.CurrentUserRole == true)
-                                    {
-                                    <span style="float:left">
-                                        <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
-                                            <button type="submit" class="btn btn-danger" disabled="true"
-                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
-                                                <i class="bi bi-trash">  </i>Usuń
-                                            </button>
-                                        </form>
-                                    </span>
-                                        <span style="float: right">
-                                            <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
-                                                @if (user.EmailConfirmed == false)
-                                                {
-                                                    <button class="btn btn-warning" disabled="true" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
-                                                        <i class="bi bi-mailbox">  </i>Zatwierdź adres email
-                                                    </button>
-                                                }
-                                            </form>
-                                        </span>
-                                        
-                                        
-                                    }
-                                    else
-                                    {
-                                <span style="float:left">
-                                    <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
-                                        @if (user.Id.Equals(ViewBag.CurrentUser))
-                                        {
-                                            <button type="submit" class="btn btn-danger" disabled="true"
-                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
-                                                <i class="bi bi-trash">  </i>Usuń
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
-                                                <i class="bi bi-trash">  </i>Usuń
-                                            </button>
-                                        }
-                                    </form>
-                                </span>
-                                <span style="float: right">
-                                    <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
-                                        @if (user.EmailConfirmed == false)
-                                        {
-                                            <button class="btn btn-warning" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
-                                                <i class="bi bi-mailbox">  </i>Zatwierdź adres email
-                                            </button>
-                                        }
-                                    </form>
-                                </span>
-                                        
-                                        
-                                    }
+        <div class="row">
+            <div class="col-md-6" style="height: 160px; overflow: auto;">
+                <h5 class="popover-header">Admini</h5>
 
-                                </td>
-                            </tr>
-                        }
-                    }
-                }
-            </tbody>
-        </table>
-        <h5 class="popover-header" style="background-color: gray">Pracownicy</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nazwa użytkownika</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model)
-                {
-                    @foreach (var userRole in ViewBag.ManagerRole)
-                    {
-                        @if (user.Id.Equals(userRole))
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nazwa użytkownika</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
                         {
-                            <tr>
-                                <td>
-                                    @user.UserName
-                                </td>
-                                <td>
-                                    @user.Email
-                                </td>
-                                <td>
-                                    <span style="float:left">
-                                        <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
-                                            @if (user.Id.Equals(ViewBag.CurrentUser))
+                            @foreach (var userRole in ViewBag.AdminRole)
+                            {
+                                @if (user.Id.Equals(userRole))
+                                {
+                                    <tr>
+                                        <td>
+                                            @user.UserName
+                                        </td>
+                                        <td>
+                                            @user.Email
+                                        </td>
+                                        <td>
+                                            @if (ViewBag.CurrentUserRole == true)
                                             {
-                                                <button type="submit" class="btn btn-danger" disabled="true"
-                                                        onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
-                                                    <i class="bi bi-trash">  </i>Usuń
-                                                </button>
+                                                <span style="float:left">
+                                                    <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
+                                                        <button type="submit" class="btn btn-danger" disabled="true"
+                                                                onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
+                                                            <i class="bi bi-trash">  </i>Usuń
+                                                        </button>
+                                                    </form>
+                                                </span>
+                                                <span style="float: right">
+                                                    <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
+                                                        @if (user.EmailConfirmed == false)
+                                                        {
+                                                            <button class="btn btn-warning" disabled="true" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
+                                                                <i class="bi bi-mailbox">  </i>Zatwierdź adres email
+                                                            </button>
+                                                        }
+                                                    </form>
+                                                </span>
+
+
                                             }
                                             else
                                             {
-                                                <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
-                                                    <i class="bi bi-trash">  </i>Usuń
-                                                </button>
+                                                <span style="float:left">
+                                                    <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
+                                                        @if (user.Id.Equals(ViewBag.CurrentUser))
+                                                        {
+                                                            <button type="submit" class="btn btn-danger" disabled="true"
+                                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
+                                                                <i class="bi bi-trash">  </i>Usuń
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn btn-danger"
+                                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
+                                                                <i class="bi bi-trash">  </i>Usuń
+                                                            </button>
+                                                        }
+                                                    </form>
+                                                </span>
+                                                <span style="float: right">
+                                                    <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
+                                                        @if (user.EmailConfirmed == false)
+                                                        {
+                                                            <button class="btn btn-warning" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
+                                                                <i class="bi bi-mailbox">  </i>Zatwierdź adres email
+                                                            </button>
+                                                        }
+                                                    </form>
+                                                </span>
+
+
                                             }
-                                        </form>
-                                    </span>
-                                    <span style="float: right">
-                                        <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
-                                            @if (user.EmailConfirmed == false)
-                                            {
-                                                <button class="btn btn-warning" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
-                                                    <i class="bi bi-mailbox">  </i>Zatwierdź adres email
-                                                </button>
-                                            }
-                                        </form>
-                                    </span>
-                                </td>
-                            </tr>
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
                         }
-                    }
-                }
-            </tbody>
-        </table>
-        <h5 class="popover-header" style="background-color: gray">Użytkownicy</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nazwa użytkownika</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model)
-                {
-                    @foreach (var userRole in ViewBag.UserRole)
-                    {
-                        @if (user.Id.Equals(userRole))
-                        {
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h5 class="popover-header">Pracownicy</h5>
+                <div style="height: 160px; overflow: auto;">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>
-                                    @user.UserName
-                                </td>
-                                <td>
-                                    @user.Email
-                                </td>
-                                <td>
-                                    <span style="float: left">
-                                        <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
-                                            <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
-                                                <i class="bi bi-trash">  </i>Usuń
-                                            </button>
-                                        </form>
-                                    </span>
-                                    <span class="ml-5" style="float: left">
-                                        <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
-                                            @if (user.EmailConfirmed == false)
-                                            {
-                                                <button class="btn btn-warning" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
-                                                    <i class="bi bi-mailbox">  </i>Zatwierdź adres email
-                                                </button>
-                                            }
-                                        </form>
-                                    </span>
-                                </td>
+                                <th>Nazwa użytkownika</th>
+                                <th>Email</th>
+                                <th></th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                @foreach (var userRole in ViewBag.ManagerRole)
+                                {
+                                    @if (user.Id.Equals(userRole))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @user.UserName
+                                            </td>
+                                            <td>
+                                                @user.Email
+                                            </td>
+                                            <td>
+                                                <span style="float:left">
+                                                    <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
+                                                        @if (user.Id.Equals(ViewBag.CurrentUser))
+                                                        {
+                                                            <button type="submit" class="btn btn-danger" disabled="true"
+                                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
+                                                                <i class="bi bi-trash">  </i>Usuń
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn btn-danger"
+                                                                    onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
+                                                                <i class="bi bi-trash">  </i>Usuń
+                                                            </button>
+                                                        }
+                                                    </form>
+                                                </span>
+                                                <span style="float: right">
+                                                    <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
+                                                        @if (user.EmailConfirmed == false)
+                                                        {
+                                                            <button class="btn btn-warning" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
+                                                                <i class="bi bi-mailbox">  </i>Zatwierdź adres email
+                                                            </button>
+                                                        }
+                                                    </form>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br />
+        <h5 class="popover-header ">Użytkownicy</h5>
+
+        <div class="container">
+            <div style="height: 200px; overflow: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nazwa użytkownika</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            @foreach (var userRole in ViewBag.UserRole)
+                            {
+                                @if (user.Id.Equals(userRole))
+                                {
+                                    <tr>
+                                        <td>
+                                            @user.UserName
+                                        </td>
+                                        <td>
+                                            @user.Email
+                                        </td>
+                                        <td>
+                                            <span style="float: left">
+                                                <form class="row" asp-action="DeleteUser" asp-route-id="@user.Id">
+                                                    <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete user : @user.UserName')">
+                                                        <i class="bi bi-trash">  </i>Usuń
+                                                    </button>
+                                                </form>
+                                            </span>
+                                            <span class="ml-5" style="float: left">
+                                                <form class="row" asp-action="ConfirmEmail" asp-route-id="@user.Id">
+                                                    @if (user.EmailConfirmed == false)
+                                                    {
+                                                        <button class="btn btn-warning" onclick="return confirm('Are you sure you want to confirm this user : @user.UserName')">
+                                                            <i class="bi bi-mailbox">  </i>Zatwierdź adres email
+                                                        </button>
+                                                    }
+                                                </form>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
                         }
-                    }
-                }
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     }
     else
     {

@@ -4,104 +4,106 @@
 }
 
 <div class="container">
-    <h1>Złożone zamówienia</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Data złożenia zamówienia
-                </th>
-                <th>
-                    Użytkownik
-                </th>
-                <th>
-                    Książka
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (var i=0; i<ViewBag.OrdersCount; i++)
-            {
+    <h3>Złożone zamówienia</h3>
+    <div style="height: 500px; overflow: auto;">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @ViewBag.Dates[i]
-                    </td>
-                    <td>
-                        @ViewBag.Users[i]
-                    </td>
-                    <td>
-                        @ViewBag.Books[i]
-                    </td>
-                    <td>
-                        @if (ViewBag.Accepted[i] == true)
-                        {
-                            <span style="float:left">
-                                <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="AcceptOrder">
-                                    <button class="btn btn-primary mr-1" disabled="true">
-                                        <i class="bi bi-check-lg">  </i>Zatwierdź
-                                    </button>
-                                </form>
-
-                            </span>
-                            @if (ViewBag.PickedUp[i] == true)
-                            {
-                                <span style="float:right;">
-                                    <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                        <button class="btn btn-danger" disabled="true">
-                                            <i class="bi bi-x-lg">  </i>Anuluj
-                                        </button>
-                                    </form>
-                                </span>
-                            }
-                            else
-                            {
-                                <span style="float:right;">
-                                    <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                        <button class="btn btn-danger">
-                                            <i class="bi bi-x-lg">  </i>Anuluj
-                                        </button>
-                                    </form>
-                                </span>
-                            }
-                        }
-                        else
-                        {
-                            <span style="float:left;">
-                                <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="AcceptOrder">
-                                    <button class="btn btn-primary mr-1">
-                                        <i class="bi bi-check-lg">  </i>Zatwierdź
-                                    </button>
-                                </form>
-
-                            </span>
-                            @if (ViewBag.PickedUp[i] == true)
-                            {
-                                <span style="float:right;">
-                                    <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                        <button class="btn btn-danger" disabled="true">
-                                            <i class="bi bi-x-lg">  </i>Anuluj
-                                        </button>
-                                    </form>
-                                </span>
-                            }
-                            else
-                            {
-                                <span style="float:right;">
-                                    <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                        <button class="btn btn-danger">
-                                            <i class="bi bi-x-lg">  </i>Anuluj
-                                        </button>
-                                    </form>
-                                </span>
-                            }
-                        }
-
-                    </td>
+                    <th>
+                        Data złożenia zamówienia
+                    </th>
+                    <th>
+                        Użytkownik
+                    </th>
+                    <th>
+                        Książka
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < ViewBag.OrdersCount; i++)
+                {
+                    <tr>
+                        <td>
+                            @ViewBag.Dates[i]
+                        </td>
+                        <td>
+                            @ViewBag.Users[i]
+                        </td>
+                        <td>
+                            @ViewBag.Books[i]
+                        </td>
+                        <td>
+                            @if (ViewBag.Accepted[i] == true)
+                            {
+                                <span style="float:left">
+                                    <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="AcceptOrder">
+                                        <button class="btn btn-primary mr-1" disabled="true">
+                                            <i class="bi bi-check-lg">  </i>Zatwierdź
+                                        </button>
+                                    </form>
+
+                                </span>
+                                @if (ViewBag.PickedUp[i] == true)
+                                {
+                                    <span style="float:right;">
+                                        <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
+                                            <button class="btn btn-danger" disabled="true">
+                                                <i class="bi bi-x-lg">  </i>Anuluj
+                                            </button>
+                                        </form>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="float:right;">
+                                        <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
+                                            <button class="btn btn-danger">
+                                                <i class="bi bi-x-lg">  </i>Anuluj
+                                            </button>
+                                        </form>
+                                    </span>
+                                }
+                            }
+                            else
+                            {
+                                <span style="float:left;">
+                                    <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="AcceptOrder">
+                                        <button class="btn btn-primary mr-1">
+                                            <i class="bi bi-check-lg">  </i>Zatwierdź
+                                        </button>
+                                    </form>
+
+                                </span>
+                                @if (ViewBag.PickedUp[i] == true)
+                                {
+                                    <span style="float:right;">
+                                        <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
+                                            <button class="btn btn-danger" disabled="true">
+                                                <i class="bi bi-x-lg">  </i>Anuluj
+                                            </button>
+                                        </form>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="float:right;">
+                                        <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
+                                            <button class="btn btn-danger">
+                                                <i class="bi bi-x-lg">  </i>Anuluj
+                                            </button>
+                                        </form>
+                                    </span>
+                                }
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

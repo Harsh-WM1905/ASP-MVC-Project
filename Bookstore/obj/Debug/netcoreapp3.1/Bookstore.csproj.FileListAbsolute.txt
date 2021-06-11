@@ -1,4 +1,3 @@
-C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Bookstore.csprojAssemblyReference.cache
 C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Bookstore.AssemblyInfoInputs.cache
 C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Bookstore.AssemblyInfo.cs
 C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Bookstore.RazorAssemblyInfo.cache
@@ -225,3 +224,4 @@ C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Razor\Vie
 C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Razor\Views\Order\ReturnBook.cshtml.g.cs
 C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Razor\Views\Panel\OrdersList.cshtml.g.cs
 C:\Users\User\source\repos\Bookstore\Bookstore\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\User\source\repos\Bookstore\Bookstore\obj\Debug\netcoreapp3.1\Bookstore.csproj.AssemblyReference.cache
