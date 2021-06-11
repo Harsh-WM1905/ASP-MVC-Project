@@ -5,9 +5,7 @@
 }
 
 <div class="container">
-    <h2>Wyszukaj książkę</h2>
-
-
+    <h4>Wyszukaj książkę</h4>
     <form asp-action="SearchBooks" method="get">
         <div class="form-actions no-color">
             <div class="form-group row">
@@ -54,38 +52,42 @@
         </div>
     </form>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    <a asp-action="SearchBooks" asp-route-sortOrder="@ViewData["TitleSort"]">Tytuł</a>
-                </th>
-                <th>
-                    <a asp-action="SearchBooks" asp-route-sortOrder="@ViewData["AutorSort"]">Autor</a>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div style="height: 375px; overflow: auto;">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Autor)
-                    </td>
-                    <td>
-                        <a class="btn btn-success mr-2" asp-action="Details" asp-route-id="@item.Id">
-                        <i class="bi-file-check">  </i>Detale</a> 
-                        <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@item.Id">
-                        <i class="bi-cart-plus">  </i>Dodaj do koszyka</a>
-                    </td>
+                    <th>
+                        <a asp-action="SearchBooks" asp-route-sortOrder="@ViewData["TitleSort"]">Tytuł</a>
+                    </th>
+                    <th>
+                        <a asp-action="SearchBooks" asp-route-sortOrder="@ViewData["AutorSort"]">Autor</a>
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Autor)
+                        </td>
+                        <td>
+                            <a class="btn btn-success mr-2" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi-file-check">  </i>Detale
+                            </a>
+                            <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@item.Id">
+                                <i class="bi-cart-plus">  </i>Dodaj do koszyka
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 </div>
 

@@ -1,4 +1,25 @@
-﻿.imageMy {
-    background-image: url(https://mobirise.com/extensions/depotamp/assets/images/mbr-1920x1080.jpg);
-    background-size: auto;
+﻿.myImage {
+    background-image: url("../Images/cool-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.table-wrapper {
+    max-height: 600px;
+    overflow: auto;
+    display: inline-block;
 }

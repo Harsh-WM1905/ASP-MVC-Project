@@ -87,6 +87,8 @@ namespace Bookstore.Controllers
         {
             CategoryModel category1 = dbContext.Categories.Single(b => b.Id == id);
             category1.Category = category2.Category;
+
+
             dbContext.SaveChangesAsync();
             return RedirectToAction("CategoryList");
         }
