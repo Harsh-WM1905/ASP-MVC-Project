@@ -231,7 +231,29 @@ namespace Bookstore.Controllers
             List<int> ids = new List<int>();
             List<bool> acceptedOrder = new List<bool>();
             List<bool> pickedOrder = new List<bool>();
+            List<bool> dateExpired = new List<bool>();
+            DateTime date = DateTime.Now;
 
+            int pickUpTime = dbContext.pickUpTimes.Single(b => b.Id == 1).TimeToPickUpOrder;
+            var adminUserId = dbContext.Roles.SingleOrDefault(b => b.Name.Equals("Admin"));
+            var current_user = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            List<string> adminList = new List<string>();
+
+            foreach (var userR in dbContext.UserRoles)
+            {
+                if (userR.RoleId.Equals(adminUserId.Id))
+                {
+                    adminList.Add(userR.UserId);
+                }
+            }
+            
+            bool ifAdmin = false;
+            if (adminList.Contains(current_user))
+            {
+                ifAdmin = true;
+            }
+            ViewData["ifAdmin"] = ifAdmin;
             var orderList = dbContext.Orders.ToList();
             orders = dbContext.Orders.Select(x => x.IdentityUserId).ToList();
             ordersIds = dbContext.Orders.Select(x => x.OrderId).ToList();
@@ -249,17 +271,30 @@ namespace Bookstore.Controllers
                     bookTitles.Add(bookTitle.Title);
                     acceptedOrder.Add(item.ReadyToPickUp);
                     pickedOrder.Add(item.PickedUp);
+                    if ((date - item.AcceptedDate).TotalDays < pickUpTime)
+                    {
+                        dateExpired.Add(true);
+                    }
+                    else
+                    {
+                        dateExpired.Add(false);
+                    }
                 }
-                
             }
+            
 
             ViewData["Accepted"] = acceptedOrder;
+            ViewData["DateExpired"] = dateExpired;
             ViewData["PickedUp"] = pickedOrder;
             ViewData["OrdersId"] = ids;//id zamówien
             ViewData["Users"] = userNames; // nazwy użytkowników
             ViewData["Books"] = bookTitles; // tytuły książek
             ViewData["Dates"] = dates; // daty
-            ViewData["OrdersCount"] = userNames.Count(); 
+            ViewData["OrdersCount"] = userNames.Count();
+
+            int days = dbContext.pickUpTimes.Single(b => b.Id == 1).TimeToPickUpOrder;
+            ViewData["Days"] = days;
+
             return View();
         }
 
@@ -267,6 +302,7 @@ namespace Bookstore.Controllers
         {
             var order = await dbContext.Orders.SingleAsync(b => b.Id == id);
             order.ReadyToPickUp = true;
+            order.AcceptedDate = DateTime.Now;
             dbContext.SaveChanges();
             return RedirectToAction("OrdersList");
         }
@@ -279,6 +315,15 @@ namespace Bookstore.Controllers
             book.Amount++;
             dbContext.Orders.Remove(orders);
             dbContext.Order.Remove(orderId);
+            dbContext.SaveChanges();
+            return RedirectToAction("OrdersList");
+        }
+
+        public ActionResult SetDays(int numberEnter)
+        {
+            int data = numberEnter;
+            var days = dbContext.pickUpTimes.Single(b => b.Id == 1);
+            days.TimeToPickUpOrder = data;
             dbContext.SaveChanges();
             return RedirectToAction("OrdersList");
         }

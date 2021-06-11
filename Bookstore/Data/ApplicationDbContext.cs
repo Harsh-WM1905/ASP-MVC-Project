@@ -27,11 +27,18 @@ namespace Bookstore.Data
         public DbSet<ShoppingCartItemModel> ShoppingCartItems { get; set; }
         public DbSet<OrderModel> Order { get; set; }
         public DbSet<OrdersModel> Orders { get; set; }
+        public DbSet<PickUpTime> pickUpTimes { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             var password = new PasswordHasher<IdentityUser>();
+            builder.Entity<PickUpTime>().HasData(
+               new PickUpTime
+               {
+                   Id = 1,
+                   TimeToPickUpOrder = 20
+            });
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
