@@ -4,14 +4,16 @@ using Bookstore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bookstore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210611202907_AcceptedDate")]
+    partial class AcceptedDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,28 +285,6 @@ namespace Bookstore.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Bookstore.Models.PickUpTime", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("TimeToPickUpOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("pickUpTimes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            TimeToPickUpOrder = 20
-                        });
-                });
-
             modelBuilder.Entity("Bookstore.Models.ShoppingCartItemModel", b =>
                 {
                     b.Property<int>("ShoppingCartItemId")
@@ -468,15 +448,15 @@ namespace Bookstore.Data.Migrations
                         {
                             Id = "69kjc8ab-d412-4a76-bb7d-e971d2d48c46",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "32451f76-6100-4974-9fc3-8eb0b1e94467",
+                            ConcurrencyStamp = "3e797f08-6051-40e6-8178-22698c624524",
                             Email = "administrator@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRATOR@EMAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIiVWu0PFtDPBK/CM1ZFXbpUEKlPaqgf/BZC+cMqfkU5IaQGj9MquOXw4oh/12cppw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGMdGWd8gFSBACCCVamc+g50N1tl8/6ZfzduVTSbuwsWd4rFNai9A/pL6jSxAJBOUA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2e1e2cea-14fa-4dd2-a4a1-80b438582493",
+                            SecurityStamp = "a05ff61d-63df-4c9a-b80a-d9c3de93a553",
                             TwoFactorEnabled = false,
                             UserName = "administrator@email.com"
                         });

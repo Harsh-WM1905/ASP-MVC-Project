@@ -4,7 +4,19 @@
 }
 
 <div class="container">
-    <h3>Złożone zamówienia</h3>
+
+    <div class="row">
+        <div class="justify-content-start container"><h3>Złożone zamówienia</h3></div>
+        @if (ViewBag.ifAdmin == true)
+        {
+            <form class="form-row container m-2 justify-content-end" method="post">
+                <input class="mr-4 form-text float-left" style="width:50px" min="1" type="number" name="numberEnter" value="@ViewBag.Days" />
+                <input class="btn btn-primary float-left" type="submit" asp-action="SetDays" value="Ustaw ilość dni" />
+            </form>
+        }
+    </div>
+
+    
     <div style="height: 500px; overflow: auto;">
         <table class="table">
             <thead>
@@ -18,6 +30,7 @@
                     <th>
                         Książka
                     </th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,7 +50,7 @@
                         <td>
                             @if (ViewBag.Accepted[i] == true)
                             {
-                                <span style="float:left">
+                                <span class="mr-5" style="float:left">
                                     <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="AcceptOrder">
                                         <button class="btn btn-primary mr-1" disabled="true">
                                             <i class="bi bi-check-lg">  </i>Zatwierdź
@@ -47,9 +60,9 @@
                                 </span>
                                 @if (ViewBag.PickedUp[i] == true)
                                 {
-                                    <span style="float:right;">
+                                    <span style="float:left;">
                                         <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                            <button class="btn btn-danger" disabled="true">
+                                            <button id="myBtn" class="btn btn-danger" disabled="true">
                                                 <i class="bi bi-x-lg">  </i>Anuluj
                                             </button>
                                         </form>
@@ -57,18 +70,28 @@
                                 }
                                 else
                                 {
-                                    <span style="float:right;">
+                                    <span style="float:left;">
                                         <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                            <button class="btn btn-danger">
-                                                <i class="bi bi-x-lg">  </i>Anuluj
-                                            </button>
+                                            @if (ViewBag.DateExpired[i] == true && ViewBag.Accepted[i] == true)
+                                            {
+                                                <button id="myBtn" class="btn btn-danger" disabled>
+                                                    <i class="bi bi-x-lg">  </i>Anuluj
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button id="myBtn" class="btn btn-danger">
+                                                    <i class="bi bi-x-lg">  </i>Anuluj
+                                                </button>
+                                            }
+
                                         </form>
                                     </span>
                                 }
                             }
                             else
                             {
-                                <span style="float:left;">
+                                <span class="mr-5" style="float:left;">
                                     <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="AcceptOrder">
                                         <button class="btn btn-primary mr-1">
                                             <i class="bi bi-check-lg">  </i>Zatwierdź
@@ -78,9 +101,9 @@
                                 </span>
                                 @if (ViewBag.PickedUp[i] == true)
                                 {
-                                    <span style="float:right;">
+                                    <span style="float:left;">
                                         <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                            <button class="btn btn-danger" disabled="true">
+                                            <button id="myBtn" class="btn btn-danger" disabled="true">
                                                 <i class="bi bi-x-lg">  </i>Anuluj
                                             </button>
                                         </form>
@@ -88,9 +111,9 @@
                                 }
                                 else
                                 {
-                                    <span style="float:right;">
-                                        <form class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
-                                            <button class="btn btn-danger">
+                                    <span style="float:left;">
+                                        <form  class="row" asp-route-id="@ViewBag.OrdersId[i]" asp-action="CancelOrder">
+                                            <button id="myBtn" class="btn btn-danger">
                                                 <i class="bi bi-x-lg">  </i>Anuluj
                                             </button>
                                         </form>
@@ -98,6 +121,34 @@
                                 }
                             }
 
+                        </td>
+                        <td>
+                            @if (ViewBag.DateExpired[i] == false && ViewBag.Accepted[i] == true && ViewBag.PickedUp[i] == false)
+                            {
+                                <div>Zamówienie nieodebrane</div>
+                                <div>w terminie.</div>
+                            }
+                            else
+                            {
+                                @if (ViewBag.Accepted[i] == false)
+                                {
+                                    <div>Zamówienie czeka</div>
+                                    <div>na akceptacje.</div>
+                                }
+                                else
+                                {
+                                    @if (ViewBag.PickedUp[i] == false)
+                                    {
+                                        <div>Zamówienie czeka</div>
+                                        <div>na odbiór.</div>
+                                    }
+                                    else
+                                    {
+                                        <div>Zamówienie odebrane.</div>
+                                    }
+
+                                }
+                            }
                         </td>
                     </tr>
                 }
