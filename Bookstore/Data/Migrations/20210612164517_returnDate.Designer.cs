@@ -4,14 +4,16 @@ using Bookstore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bookstore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210612164517_returnDate")]
+    partial class returnDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -305,11 +307,6 @@ namespace Bookstore.Data.Migrations
                         {
                             Id = 1,
                             TimeToPickUpOrder = 20
-                        },
-                        new
-                        {
-                            Id = 2,
-                            TimeToPickUpOrder = 60
                         });
                 });
 
@@ -476,15 +473,15 @@ namespace Bookstore.Data.Migrations
                         {
                             Id = "69kjc8ab-d412-4a76-bb7d-e971d2d48c46",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d6d6ebb5-da95-49e6-80ce-d0eb1da19908",
+                            ConcurrencyStamp = "4af72e8e-ebbc-4a4b-bc63-110f07262358",
                             Email = "administrator@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRATOR@EMAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEASOb5kLTJjRKB7CaRhJbvIc+38cwCBZLxcLDp1FQS1xiPgvaQT/n0au8X/UgS5zEQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFhGj+STKQJ182tmuBy579waWvY1XDBkaOvJaRSAhkSbSxIPZ0jyFzh5BrolZXYM8w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4529b9bd-bba3-4425-9b4a-8e590b3e7269",
+                            SecurityStamp = "0bfb25d8-9cba-481c-bbcf-544cedeb208d",
                             TwoFactorEnabled = false,
                             UserName = "administrator@email.com"
                         });

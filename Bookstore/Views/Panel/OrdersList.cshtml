@@ -9,10 +9,18 @@
         <div class="justify-content-start container"><h3>Złożone zamówienia</h3></div>
         @if (ViewBag.ifAdmin == true)
         {
-            <form class="form-row container m-2 justify-content-end" method="post">
-                <input class="mr-4 form-text float-left" style="width:50px" min="1" type="number" name="numberEnter" value="@ViewBag.Days" />
-                <input class="btn btn-primary float-left" type="submit" asp-action="SetDays" value="Ustaw ilość dni" />
-            </form>
+    <div class="container">
+        <form class="form-row container m-2 justify-content-end" method="post">
+            <label class="text-center">Ustaw ile dni użytkownik ma na odebranie zaakceptoawnego zamówienia:  </label>
+            <input class="mr-4 form-text float-left" style="width:50px" min="1" type="number" name="numberEnter1" value="@ViewBag.Days" />
+            <input class="btn btn-primary float-left" type="submit" asp-action="SetDaysToPickUp" value="Ustaw ilość dni" />
+        </form>
+        <form class="form-row container m-2 justify-content-end" method="post">
+            <label class="text-center">Ustaw ile dni użytkownik może trzymać w domu książkę:  </label>
+            <input class="mr-4 form-text float-left" style="width:50px" min="1" type="number" name="numberEnter2" value="@ViewBag.DaysToKeep" />
+            <input class="btn btn-primary float-left" type="submit" asp-action="SetDaysToKeep" value="Ustaw ilość dni" />
+        </form>
+    </div>
         }
     </div>
 

@@ -14,6 +14,7 @@
                     <th>Rok publikacji</th>
                     <th>Kategoria</th>
                     <th>Data wypożyczenia</th>
+                    <th>Termin zwrotu</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -21,66 +22,69 @@
             <tbody>
                 @for (var i = 0; i < ViewBag.CountOrders; i++)
                 {
-                    <tr>
+                <tr>
+                    <td>
+                        @ViewBag.BorrowedBooks[i].Title
+                    </td>
+                    <td>
+                        @ViewBag.BorrowedBooks[i].Autor
+                    </td>
+                    <td>
+                        @ViewBag.BorrowedBooks[i].Year_of_publish
+                    </td>
+                    <td>
+                        @ViewBag.BorrowedBooks[i].Category
+                    </td>
+                    <td>
+                        @ViewBag.OrderDate[i]
+                    </td>
+                    <td>
+                        @ViewBag.ReturnDate[i]
+                    </td>
+                    @if (ViewBag.IfBool[i] == true)
+                    {
                         <td>
-                            @ViewBag.BorrowedBooks[i].Title
+                            <span style="float: left">
+                                <form asp-route-id="@ViewBag.Orders[i]" asp-action="PickedUp">
+                                    <button class="btn btn-primary" disabled="true">
+                                        <i class="bi-file-earmark-plus">  </i>Odbierz książkę
+                                    </button>
+                                </form>
+                            </span>
                         </td>
                         <td>
-                            @ViewBag.BorrowedBooks[i].Autor
+                            <span style="float: right">
+                                <form asp-route-id="@ViewBag.Orders[i]" asp-action="ReturnBook">
+                                    <button class="btn btn-dark">
+                                        <i class="bi-file-earmark-minus">  </i>Zwróć książkę
+                                    </button>
+                                </form>
+                            </span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span style="float: left">
+                                <form asp-route-id="@ViewBag.Orders[i]" asp-action="PickedUp">
+                                    <button class="btn btn-primary">
+                                        <i class="bi-file-earmark-plus">  </i>Odbierz książkę
+                                    </button>
+                                </form>
+                            </span>
                         </td>
                         <td>
-                            @ViewBag.BorrowedBooks[i].Year_of_publish
+                            <span style="float: right">
+                                <form asp-route-id="@ViewBag.Orders[i]" asp-action="ReturnBook">
+                                    <button class="btn btn-dark" disabled="true">
+                                        <i class="bi-file-earmark-minus">  </i>Zwróć książkę
+                                    </button>
+                                </form>
+                            </span>
                         </td>
-                        <td>
-                            @ViewBag.BorrowedBooks[i].Category
-                        </td>
-                        <td>
-                            @ViewBag.OrderDate[i]
-                        </td>
-                        @if (ViewBag.IfBool[i] == true)
-                        {
-                            <td>
-                                <span style="float: left">
-                                    <form asp-route-id="@ViewBag.Orders[i]" asp-action="PickedUp">
-                                        <button class="btn btn-primary" disabled="true">
-                                            <i class="bi-file-earmark-plus">  </i>Odbierz książkę
-                                        </button>
-                                    </form>
-                                </span>
-                            </td>
-                            <td>
-                                <span style="float: right">
-                                    <form asp-route-id="@ViewBag.Orders[i]" asp-action="ReturnBook">
-                                        <button class="btn btn-dark">
-                                            <i class="bi-file-earmark-minus">  </i>Zwróć książkę
-                                        </button>
-                                    </form>
-                                </span>
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                <span style="float: left">
-                                    <form asp-route-id="@ViewBag.Orders[i]" asp-action="PickedUp">
-                                        <button class="btn btn-primary">
-                                            <i class="bi-file-earmark-plus">  </i>Odbierz książkę
-                                        </button>
-                                    </form>
-                                </span>
-                            </td>
-                            <td>
-                                <span style="float: right">
-                                    <form asp-route-id="@ViewBag.Orders[i]" asp-action="ReturnBook">
-                                        <button class="btn btn-dark" disabled="true">
-                                            <i class="bi-file-earmark-minus">  </i>Zwróć książkę
-                                        </button>
-                                    </form>
-                                </span>
-                            </td>
-                        }
+                    }
 
-                    </tr>
+                </tr>
                 }
             </tbody>
         </table>

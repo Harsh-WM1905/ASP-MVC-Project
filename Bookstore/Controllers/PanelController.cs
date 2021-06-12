@@ -293,16 +293,20 @@ namespace Bookstore.Controllers
             ViewData["OrdersCount"] = userNames.Count();
 
             int days = dbContext.pickUpTimes.Single(b => b.Id == 1).TimeToPickUpOrder;
+            int daysToKeep = dbContext.pickUpTimes.Single(b => b.Id == 2).TimeToPickUpOrder;
             ViewData["Days"] = days;
+            ViewData["DaysToKeep"] = daysToKeep;
 
             return View();
         }
 
         public async Task<IActionResult> AcceptOrder(int id)
         {
+            int days = dbContext.pickUpTimes.Single(b => b.Id == 2).TimeToPickUpOrder;
             var order = await dbContext.Orders.SingleAsync(b => b.Id == id);
             order.ReadyToPickUp = true;
             order.AcceptedDate = DateTime.Now;
+            order.ReturnDate = DateTime.Now.AddDays(days);
             dbContext.SaveChanges();
             return RedirectToAction("OrdersList");
         }
@@ -319,10 +323,18 @@ namespace Bookstore.Controllers
             return RedirectToAction("OrdersList");
         }
 
-        public ActionResult SetDays(int numberEnter)
+        public ActionResult SetDaysToPickUp(int numberEnter1)
         {
-            int data = numberEnter;
+            int data = numberEnter1;
             var days = dbContext.pickUpTimes.Single(b => b.Id == 1);
+            days.TimeToPickUpOrder = data;
+            dbContext.SaveChanges();
+            return RedirectToAction("OrdersList");
+        }
+        public ActionResult SetDaysToKeep(int numberEnter2)
+        {
+            int data = numberEnter2;
+            var days = dbContext.pickUpTimes.Single(b => b.Id == 2);
             days.TimeToPickUpOrder = data;
             dbContext.SaveChanges();
             return RedirectToAction("OrdersList");
