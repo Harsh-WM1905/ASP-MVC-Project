@@ -14,6 +14,7 @@ namespace Bookstore.Models
         public int Id { set; get; }
         public DateTime OrderDate { get; set; }
         public DateTime AcceptedDate { get; set; }
+        public DateTime ReturnDate { get; set; }
         public bool ReadyToPickUp { get; set; }
         public bool PickedUp { get; set; }
         public string IdentityUserId { get; set; }

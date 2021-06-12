@@ -29,6 +29,9 @@ namespace Bookstore.Controllers
             List<DateTime> orderDates = new List<DateTime>();
             List<int> orders = new List<int>();
             List<bool> ifBool = new List<bool>();
+            List<DateTime> returnDates = new List<DateTime>();
+
+            
             
             if (dbContext.Orders.Any() == true)
             {
@@ -40,6 +43,7 @@ namespace Bookstore.Controllers
                         {
                             var orderId = item.OrderId;
                             var date = item.OrderDate;
+                            var returnDate = item.ReturnDate;
                             var listOrder = dbContext.Order.ToList();
                             foreach (var item2 in listOrder)
                             {
@@ -50,12 +54,14 @@ namespace Bookstore.Controllers
                                     ifBool.Add(item.PickedUp);
                                     orders.Add(item.Id);
                                     orderDates.Add(date);
+                                    returnDates.Add(returnDate);
                                 }   
                             }
                             
                         }
                     
                 }
+                ViewData["ReturnDate"] = returnDates;
                 ViewData["IfBool"] = ifBool;
                 ViewData["BorrowedBooks"] = borrowedBooks;
                 ViewData["OrderDate"] = orderDates;

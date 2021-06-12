@@ -37,8 +37,13 @@ namespace Bookstore.Data
                new PickUpTime
                {
                    Id = 1,
-                   TimeToPickUpOrder = 20
-            });
+                   TimeToPickUpOrder = 20 //czas na odbiór książki po akceptacji zamówienia
+               },
+               new PickUpTime
+               {
+                   Id = 2,
+                   TimeToPickUpOrder = 60 //czas na przetrzymywanie książki np u siebie w domu
+               });
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
